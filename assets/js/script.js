@@ -258,11 +258,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function preloadImages() {
         const images = document.querySelectorAll('img');
         images.forEach(function(img) {
-            img.addEventListener('load', function() {
-                this.style.opacity = '1';
-            });
-            img.style.opacity = '0';
-            img.style.transition = 'opacity 0.3s ease';
+            // Only apply fade-in effect if image is not already loaded
+            if (!img.complete || img.naturalHeight === 0) {
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                
+                const showImage = function() {
+                    img.style.opacity = '1';
+                };
+                
+                img.addEventListener('load', showImage);
+                img.addEventListener('error', showImage);
+                
+                // Fallback: show image after 2 seconds regardless
+                setTimeout(showImage, 2000);
+            }
         });
     }
 

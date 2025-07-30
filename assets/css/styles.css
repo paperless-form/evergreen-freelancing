@@ -143,6 +143,30 @@ body {
     transform: translateY(-2px);
 }
 
+/* Register button styles - Blue color scheme */
+.btn-register {
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+    color: white !important;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.btn-register:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.btn-register:focus {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+    color: white !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
 .btn-outline-primary {
     color: var(--primary-dark);
     border-color: var(--primary-dark);
@@ -361,6 +385,22 @@ body {
     margin: 0 auto;
 }
 
+.learning-highlight {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--white);
+    font-weight: 600;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
 /* Founder Section */
 .founder-section {
     background: linear-gradient(135deg, var(--white) 0%, var(--light-gray) 100%);
@@ -392,6 +432,24 @@ body {
     font-size: 3rem;
     color: var(--accent-blue);
     font-family: serif;
+}
+
+.founder-cta {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--primary-dark);
+    font-weight: 600;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(80, 95, 59, 0.1) 0%, rgba(131, 148, 84, 0.1) 100%);
+    border-left: 4px solid var(--primary-dark);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(80, 95, 59, 0.1);
+}
+
+.founder-cta br {
+    display: block;
+    margin: 0.5rem 0;
 }
 
 .founder-card {

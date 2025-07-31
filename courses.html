@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Courses - EverGreen Freelancing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Courses Page Specific Styles -->
+    <style>
+        /* Hero Banner */
+        .courses-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            padding: 120px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .courses-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .courses-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+        }
+
+        .courses-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .courses-hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .courses-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Course Cards Section */
+        .courses-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .courses-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: #6c757d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Course Card */
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            height: 100%;
+            position: relative;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .course-image-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .course-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .course-card:hover .course-image {
+            transform: scale(1.1);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .course-badge.popular {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #333;
+        }
+
+        .course-badge.new {
+            background: linear-gradient(135deg, #00d2d3, #54a0ff);
+        }
+
+        .course-content {
+            padding: 2rem;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .course-description {
+            font-size: 1rem;
+            color: #6c757d;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            height: 80px;
+            overflow: hidden;
+        }
+
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .course-duration {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .course-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stars {
+            color: #ffd700;
+        }
+
+        .rating-text {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .course-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #339CB5;
+            margin-bottom: 1rem;
+        }
+
+        .course-price .original {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-details {
+            flex: 1;
+            background: linear-gradient(135deg, #339CB5, #2a7a8f);
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .btn-details:hover {
+            background: linear-gradient(135deg, #2a7a8f, #1f5f6f);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(51, 156, 181, 0.3);
+        }
+
+        .btn-cart {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border: none;
+            color: white;
+            padding: 0.75rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 50px;
+        }
+
+        .btn-cart:hover {
+            background: linear-gradient(135deg, #20c997, #17a2b8);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        .btn-cart.added {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+
+        /* Toastr Notification */
+        .toastr-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 350px;
+        }
+
+        .toastr {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 10px;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            border-left: 4px solid #28a745;
+            overflow: hidden;
+        }
+
+        .toastr.show {
+            transform: translateX(0);
+        }
+
+        .toastr.success {
+            border-left-color: #28a745;
+        }
+
+        .toastr.error {
+            border-left-color: #dc3545;
+        }
+
+        .toastr-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .toastr-icon {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        .toastr-icon.success {
+            color: #28a745;
+        }
+
+        .toastr-icon.error {
+            color: #dc3545;
+        }
+
+        .toastr-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .toastr-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+            font-size: 1.1rem;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toastr-close:hover {
+            color: #495057;
+        }
+
+        .toastr-body {
+            padding: 12px 16px;
+            color: #495057;
+            font-size: 0.9rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            color: #6c757d;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, #339CB5, #2a7a8f);
+            border-color: #339CB5;
+            color: white;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 991.98px) {
+            .courses-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .courses-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .courses-hero {
+                padding: 100px 0 60px;
+            }
+
+            .courses-hero-title {
+                font-size: 2rem;
+            }
+
+            .courses-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .course-actions {
+                flex-direction: column;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Mobile Filter Improvements */
+            .filter-section {
+                position: sticky;
+                top: 80px;
+                z-index: 100;
+                margin-bottom: 2rem;
+                padding: 1rem 0;
+                border-radius: 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .filter-container {
+                flex-direction: row;
+                gap: 1rem;
+                padding: 0 1rem;
+                overflow-x: auto;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .filter-btn {
+                white-space: nowrap;
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                min-width: auto;
+                flex-shrink: 0;
+            }
+
+            /* Add padding to courses section to account for sticky filter */
+            .courses-section {
+                padding-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.jpg" alt="logo" class="logo">
+                <span>EverGreen Freelancing</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-times close-icon"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-nav">
+                    <a href="checkout.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-register">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="courses-hero">
+        <div class="container">
+            <div class="courses-hero-content">
+                <h1 class="courses-hero-title">Master the Art of Freelancing</h1>
+                <p class="courses-hero-subtitle">Transform your skills into a thriving freelance career with our expert-led courses</p>
+                
+                <div class="courses-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Expert Courses</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Students Enrolled</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Courses</button>
+                <button class="filter-btn" data-filter="digital-marketing">Digital Marketing</button>
+                <button class="filter-btn" data-filter="web-development">Web Development</button>
+                <button class="filter-btn" data-filter="graphic-design">Graphic Design</button>
+                <button class="filter-btn" data-filter="content-writing">Content Writing</button>
+                <button class="filter-btn" data-filter="video-editing">Video Editing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="courses-container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Courses</h2>
+                    <p class="section-subtitle">Choose from our comprehensive collection of courses designed to help you succeed in the freelance world</p>
+                </div>
+
+                <div class="row" id="coursesGrid">
+                    <!-- Course 1 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="digital-marketing">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Digital Marketing" class="course-image">
+                                <div class="course-badge popular">Popular</div>
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Complete Digital Marketing Masterclass</h3>
+                                <p class="course-description">Master SEO, social media marketing, email campaigns, and analytics to build successful digital marketing campaigns.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>12 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">(2.5k reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$199</span>
+                                    <span>$149</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="course-detail.html" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Complete Digital Marketing Masterclass', 149)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="web-development">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Web Development" class="course-image">
+                                <div class="course-badge new">New</div>
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Full-Stack Web Development Bootcamp</h3>
+                                <p class="course-description">Learn HTML, CSS, JavaScript, React, Node.js, and database management to become a full-stack developer.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>20 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">(1.8k reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$299</span>
+                                    <span>$249</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="#" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Full-Stack Web Development Bootcamp', 249)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="graphic-design">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Graphic Design" class="course-image">
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Professional Graphic Design Course</h3>
+                                <p class="course-description">Master Adobe Creative Suite, design principles, and create stunning visuals for brands and businesses.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>15 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-text">(1.2k reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$179</span>
+                                    <span>$129</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="#" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Professional Graphic Design Course', 129)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 4 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="content-writing">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Content Writing" class="course-image">
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Content Writing & Copywriting Mastery</h3>
+                                <p class="course-description">Learn to write compelling content, SEO optimization, and persuasive copy that converts readers to customers.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>10 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">(950 reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$149</span>
+                                    <span>$99</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="#" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Content Writing & Copywriting Mastery', 99)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 5 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="video-editing">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Video Editing" class="course-image">
+                                <div class="course-badge popular">Popular</div>
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Video Editing & Motion Graphics</h3>
+                                <p class="course-description">Master Premiere Pro, After Effects, and create professional videos with stunning motion graphics.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>18 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-text">(1.6k reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$249</span>
+                                    <span>$199</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="#" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Video Editing & Motion Graphics', 199)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course 6 -->
+                    <div class="col-lg-4 col-md-6 mb-4" data-category="digital-marketing">
+                        <div class="course-card">
+                            <div class="course-image-container">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media Marketing" class="course-image">
+                            </div>
+                            <div class="course-content">
+                                <h3 class="course-title">Social Media Marketing Strategy</h3>
+                                <p class="course-description">Build powerful social media campaigns, grow your audience, and monetize your social media presence.</p>
+                                
+                                <div class="course-meta">
+                                    <div class="course-duration">
+                                        <i class="fas fa-clock"></i>
+                                        <span>8 hours</span>
+                                    </div>
+                                    <div class="course-rating">
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                        <span class="rating-text">(750 reviews)</span>
+                                    </div>
+                                </div>
+
+                                <div class="course-price">
+                                    <span class="original">$129</span>
+                                    <span>$89</span>
+                                </div>
+
+                                <div class="course-actions">
+                                    <a href="#" class="btn-details">View Details</a>
+                                    <button class="btn-cart" onclick="addToCart('Social Media Marketing Strategy', 89)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toastr Container -->
+    <div class="toastr-container" id="toastrContainer"></div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo-with-text.jpg" alt="logo" class="footer-logo">
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="footer-brand">
+                        <p>Transform your future with expert-led courses designed for the modern learner.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <div class="contact-info">
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@evergfreelance.com">Info@evergfreelance.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+639602358974">+63 960 235 8974</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/1234567890">123 Learning St, Education City</a></li>
+                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/639602358974">+63 960 235 8974</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; <script>document.write(new Date().getFullYear());</script> EverGreen Freelancing. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Cart functionality
+        let cart = [];
+
+        function addToCart(courseName, price) {
+            const button = event.target.closest('.btn-cart');
+            
+            // Check if already in cart
+            const existingItem = cart.find(item => item.name === courseName);
+            
+            if (existingItem) {
+                // Remove from cart
+                cart = cart.filter(item => item.name !== courseName);
+                button.classList.remove('added');
+                button.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+                showToastr('Course Removed', `${courseName} has been removed from your cart`, 'error');
+            } else {
+                // Add to cart
+                cart.push({ name: courseName, price: price });
+                button.classList.add('added');
+                button.innerHTML = '<i class="fas fa-times"></i>';
+                showToastr('Course Added', `${courseName} has been added to your cart`, 'success');
+            }
+            
+            console.log('Cart:', cart);
+        }
+
+        function showToastr(title, message, type = 'success') {
+            const container = document.getElementById('toastrContainer');
+            const toastrId = 'toastr-' + Date.now();
+            
+            const toastr = document.createElement('div');
+            toastr.className = `toastr ${type}`;
+            toastr.id = toastrId;
+            
+            toastr.innerHTML = `
+                <div class="toastr-header">
+                    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-times-circle'} toastr-icon ${type}"></i>
+                    <span class="toastr-title">${title}</span>
+                    <button class="toastr-close" onclick="closeToastr('${toastrId}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="toastr-body">
+                    ${message}
+                </div>
+            `;
+            
+            container.appendChild(toastr);
+            
+            // Show animation
+            setTimeout(() => {
+                toastr.classList.add('show');
+            }, 100);
+            
+            // Auto hide after 4 seconds
+            setTimeout(() => {
+                closeToastr(toastrId);
+            }, 4000);
+        }
+
+        function closeToastr(toastrId) {
+            const toastr = document.getElementById(toastrId);
+            if (toastr) {
+                toastr.classList.remove('show');
+                setTimeout(() => {
+                    if (toastr.parentNode) {
+                        toastr.parentNode.removeChild(toastr);
+                    }
+                }, 300);
+            }
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                filterCourses(filter);
+            });
+        });
+
+        function filterCourses(category) {
+            const courses = document.querySelectorAll('[data-category]');
+            
+            courses.forEach(course => {
+                if (category === 'all' || course.getAttribute('data-category') === category) {
+                    course.style.display = 'block';
+                    course.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    course.style.display = 'none';
+                }
+            });
+        }
+
+        // Add fadeIn animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Animate course cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.6s ease';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.course-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html> 

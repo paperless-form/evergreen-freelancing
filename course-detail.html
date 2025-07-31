@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Digital Marketing Masterclass - EverGreen Freelancing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Course Detail Page Specific Styles -->
+    <style>
+        /* Hero Section */
+        .course-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .course-hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .course-breadcrumb {
+            margin-bottom: 2rem;
+        }
+
+        .course-breadcrumb a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .course-breadcrumb a:hover {
+            color: white;
+        }
+
+        .course-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .meta-item i {
+            font-size: 1.2rem;
+        }
+
+        /* Course Content */
+        .course-content {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .course-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+                 .course-grid {
+             display: grid;
+             grid-template-columns: 1fr;
+             gap: 3rem;
+         }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #6c757d;
+            margin-bottom: 2rem;
+        }
+
+        /* What You'll Learn */
+        .learning-objectives {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .learning-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .learning-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #495057;
+        }
+
+        .learning-list li i {
+            color: #28a745;
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Curriculum */
+        .curriculum-section {
+            margin-bottom: 2rem;
+        }
+
+        .curriculum-item {
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .curriculum-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .curriculum-header:hover {
+            background: #e9ecef;
+        }
+
+        .curriculum-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin: 0;
+        }
+
+        .curriculum-duration {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .curriculum-content {
+            padding: 1.5rem;
+            border-top: 1px solid #e9ecef;
+            display: none;
+        }
+
+        .curriculum-content.show {
+            display: block;
+        }
+
+        .lesson-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+
+        .lesson-title {
+            font-weight: 500;
+            color: #495057;
+        }
+
+        .lesson-duration {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Instructor */
+        .instructor-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructor-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .instructor-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .instructor-details h4 {
+            margin: 0 0 0.5rem 0;
+            color: var(--primary-dark);
+        }
+
+        .instructor-title {
+            color: #339CB5;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructor-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Reviews */
+        .reviews-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-item {
+            border-bottom: 1px solid #e9ecef;
+            padding: 1.5rem 0;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .review-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .review-rating {
+            color: #ffd700;
+        }
+
+        .review-text {
+            color: #495057;
+            line-height: 1.6;
+        }
+
+                 /* Toastr Container */
+         .toastr-container {
+             position: fixed;
+             top: 20px;
+             right: 20px;
+             z-index: 9999;
+             pointer-events: none;
+         }
+
+         .toastr {
+             background: white;
+             border-radius: 8px;
+             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+             margin-bottom: 10px;
+             padding: 16px 20px;
+             min-width: 300px;
+             border-left: 4px solid #28a745;
+             display: flex;
+             align-items: center;
+             gap: 12px;
+             transform: translateX(100%);
+             transition: transform 0.3s ease;
+             pointer-events: auto;
+         }
+
+         .toastr.show {
+             transform: translateX(0);
+         }
+
+         .toastr.success {
+             border-left-color: #28a745;
+         }
+
+         .toastr-icon {
+             font-size: 1.2rem;
+             color: #28a745;
+         }
+
+         .toastr-content {
+             flex: 1;
+         }
+
+         .toastr-title {
+             font-weight: 600;
+             color: #333;
+             margin-bottom: 2px;
+             font-size: 0.95rem;
+         }
+
+         .toastr-message {
+             color: #666;
+             font-size: 0.9rem;
+         }
+
+         .toastr-close {
+             background: none;
+             border: none;
+             color: #999;
+             cursor: pointer;
+             font-size: 1.1rem;
+             padding: 0;
+             line-height: 1;
+         }
+
+         .toastr-close:hover {
+             color: #666;
+         }
+
+         /* Floating Cart Button */
+         .floating-cart-btn {
+             position: fixed;
+             bottom: 30px;
+             right: 30px;
+             background: linear-gradient(135deg, #339CB5, #2a7a8f);
+             color: white;
+             border: none;
+             border-radius: 50px;
+             padding: 15px 25px;
+             font-weight: 600;
+             font-size: 1.1rem;
+             box-shadow: 0 8px 25px rgba(51, 156, 181, 0.3);
+             z-index: 1000;
+             transition: all 0.3s ease;
+             display: flex;
+             align-items: center;
+             gap: 10px;
+             cursor: pointer;
+         }
+
+         .floating-cart-btn:hover {
+             transform: translateY(-3px);
+             box-shadow: 0 12px 35px rgba(51, 156, 181, 0.4);
+         }
+         
+         .floating-cart-btn.remove-state:hover {
+             box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+         }
+
+         .floating-cart-btn .price {
+             font-size: 1.2rem;
+             font-weight: 700;
+         }
+
+         .floating-cart-btn .original-price {
+             text-decoration: line-through;
+             font-size: 0.9rem;
+             opacity: 0.8;
+             margin-right: 5px;
+         }
+
+         .floating-cart-btn .current-price {
+             color: #fff;
+         }
+
+         .floating-cart-btn .cart-icon {
+             font-size: 1.3rem;
+         }
+
+                 /* Mobile Responsive */
+         @media (max-width: 991.98px) {
+             .course-grid {
+                 grid-template-columns: 1fr;
+                 gap: 2rem;
+             }
+ 
+             .floating-cart-btn {
+                 bottom: 20px;
+                 right: 20px;
+                 padding: 12px 20px;
+                 font-size: 1rem;
+             }
+
+            .course-title {
+                font-size: 2.5rem;
+            }
+
+            .course-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .course-hero {
+                padding: 100px 0 40px;
+            }
+
+            .course-title {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                padding: 2rem;
+            }
+
+            .instructor-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+                 /* ===== SIMPLE & CLEAN COURSE DESCRIPTION STYLING ===== */
+         
+         /* Simple Course Description Styling */
+         .course-description {
+             font-size: 1.1rem;
+             line-height: 1.8;
+             color: #495057;
+             margin-bottom: 2rem;
+             background: #ffffff;
+             padding: 2rem;
+             border-radius: 12px;
+             border: 1px solid #e9ecef;
+             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+             position: relative;
+         }
+
+         .course-description:hover {
+             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+             transition: all 0.3s ease;
+         }
+
+         /* Course Description Typography */
+         .course-description p {
+             margin-bottom: 1.2rem;
+             color: #495057;
+         }
+
+         .course-description p:last-child {
+             margin-bottom: 0;
+         }
+
+         .course-description strong {
+             color: #339CB5;
+             font-weight: 600;
+         }
+
+         .course-description em {
+             color: #6c757d;
+             font-style: italic;
+         }
+
+         /* Course Description Links */
+         .course-description a {
+             color: #339CB5;
+             text-decoration: none;
+             font-weight: 500;
+             border-bottom: 1px solid transparent;
+             transition: all 0.3s ease;
+         }
+
+         .course-description a:hover {
+             color: #2a7a8f;
+             border-bottom-color: #2a7a8f;
+         }
+
+         /* Course Description Lists */
+         .course-description ul,
+         .course-description ol {
+             margin: 1.2rem 0;
+             padding-left: 1.5rem;
+         }
+
+         .course-description li {
+             margin-bottom: 0.6rem;
+             line-height: 1.6;
+             color: #495057;
+         }
+
+         .course-description ul li {
+             list-style-type: none;
+             position: relative;
+         }
+
+         .course-description ul li::before {
+             content: '✓';
+             color: #28a745;
+             font-weight: bold;
+             position: absolute;
+             left: -1.5rem;
+             font-size: 1rem;
+         }
+
+         /* Course Description Blockquotes */
+         .course-description blockquote {
+             background: #f8f9fa;
+             border-left: 4px solid #339CB5;
+             margin: 1.5rem 0;
+             padding: 1rem 1.5rem;
+             border-radius: 0 8px 8px 0;
+             font-style: italic;
+             color: #6c757d;
+         }
+
+         /* Course Description Code Blocks */
+         .course-description code {
+             background: #f8f9fa;
+             color: #e83e8c;
+             padding: 0.2rem 0.4rem;
+             border-radius: 4px;
+             font-family: 'Courier New', monospace;
+             font-size: 0.9em;
+             border: 1px solid #e9ecef;
+         }
+
+         .course-description pre {
+             background: #f8f9fa;
+             color: #495057;
+             padding: 1rem;
+             border-radius: 8px;
+             overflow-x: auto;
+             margin: 1rem 0;
+             border: 1px solid #e9ecef;
+         }
+
+         /* Course Description Tables */
+         .course-description table {
+             width: 100%;
+             border-collapse: collapse;
+             margin: 1.5rem 0;
+             background: white;
+             border-radius: 8px;
+             overflow: hidden;
+             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+             border: 1px solid #e9ecef;
+         }
+
+         .course-description th {
+             background: #339CB5;
+             color: white;
+             padding: 1rem;
+             text-align: left;
+             font-weight: 600;
+         }
+
+         .course-description td {
+             padding: 1rem;
+             border-bottom: 1px solid #e9ecef;
+             color: #495057;
+         }
+
+         .course-description tr:hover {
+             background: #f8f9fa;
+         }
+
+         /* Responsive Course Description */
+         @media (max-width: 768px) {
+             .course-description {
+                 font-size: 1rem;
+                 padding: 1.5rem;
+                 margin-bottom: 1.5rem;
+             }
+
+             .course-description blockquote {
+                 margin: 1rem 0;
+                 padding: 0.75rem 1rem;
+             }
+
+             .course-description table {
+                 font-size: 0.9rem;
+             }
+
+             .course-description th,
+             .course-description td {
+                 padding: 0.75rem;
+             }
+         }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.jpg" alt="logo" class="logo">
+                <span>EverGreen Freelancing</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-times close-icon"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-nav">
+                    <a href="checkout.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Cart</span>
+                        <span class="cart-count">2</span>
+                    </a>
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-register">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Course Hero -->
+    <section class="course-hero">
+        <div class="container">
+            <div class="course-hero-content">
+                <div class="course-breadcrumb">
+                    <a href="index.html">Home</a> / 
+                    <a href="courses.html">Courses</a> / 
+                    <span>Complete Digital Marketing Masterclass</span>
+                </div>
+                
+                <h1 class="course-title">Complete Digital Marketing Masterclass</h1>
+                <p class="course-subtitle">Master SEO, social media marketing, email campaigns, and analytics to build successful digital marketing campaigns that drive real results.</p>
+                
+                <div class="course-meta">
+                    <div class="meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>12 hours of content</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-star"></i>
+                        <span>4.8 (2,500+ reviews)</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>15,000+ students enrolled</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-certificate"></i>
+                        <span>Certificate of completion</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Content -->
+    <section class="course-content">
+        <div class="container">
+            <div class="course-container">
+                <div class="course-grid">
+                    <!-- Main Content -->
+                    <div class="main-content">
+                        <!-- Course Description -->
+                        <div class="section-title">About This Course</div>
+                        <div class="row course-description">
+                            <p>
+                                Transform your career with our comprehensive Digital Marketing Masterclass. This course is designed for beginners and intermediate marketers who want to master the essential skills needed to succeed in today's digital landscape. You'll learn everything from SEO and social media marketing to email campaigns and analytics.
+                            </p>
+
+                            <p>
+                                Whether you're looking to launch your own digital marketing agency or take your current business to the next level, this course will equip you with the knowledge and skills to thrive in the digital world.
+                            </p>
+                            
+                            <ul>
+                                <li>Master SEO techniques to improve website rankings</li>
+                                <li>Create and manage successful social media campaigns</li>
+                                <li>Build effective email marketing strategies</li>
+                                <li>Understand Google Analytics and data interpretation</li>
+                                <li>Develop content marketing strategies</li>
+                                <li>Learn PPC advertising and Google Ads</li>
+                                <li>Create conversion-optimized landing pages</li>
+                                <li>Master marketing automation tools</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toastr Container -->
+    <div class="toastr-container" id="toastrContainer"></div>
+
+    <!-- Floating Cart Button -->
+    <button class="floating-cart-btn" onclick="addToCart()">
+        <i class="fas fa-shopping-cart cart-icon"></i>
+        <div class="price">
+            <span class="original-price">$199</span>
+            <span class="current-price">$149</span>
+            <span class="enroll-now">Enroll Now</span>
+        </div>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo-with-text.jpg" alt="logo" class="footer-logo">
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="footer-brand">
+                        <p>Transform your future with expert-led courses designed for the modern learner.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <div class="contact-info">
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@evergfreelance.com">Info@evergfreelance.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+639602358974">+63 960 235 8974</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/1234567890">123 Learning St, Education City</a></li>
+                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/639602358974">+63 960 235 8974</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; <script>document.write(new Date().getFullYear());</script> EverGreen Freelancing. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle curriculum sections
+        function toggleCurriculum(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+            } else {
+                content.classList.add('show');
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+            }
+        }
+
+        // Toastr notification system
+        function showToastr(type, title, message, duration = 3000) {
+            const container = document.getElementById('toastrContainer');
+            const toastr = document.createElement('div');
+            toastr.className = `toastr ${type}`;
+            
+            toastr.innerHTML = `
+                <i class="fas fa-check-circle toastr-icon"></i>
+                <div class="toastr-content">
+                    <div class="toastr-title">${title}</div>
+                    <div class="toastr-message">${message}</div>
+                </div>
+                <button class="toastr-close" onclick="closeToastr(this.parentElement)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(toastr);
+            
+            // Show the toastr
+            setTimeout(() => {
+                toastr.classList.add('show');
+            }, 100);
+            
+            // Auto remove after duration
+            setTimeout(() => {
+                closeToastr(toastr);
+            }, duration);
+        }
+        
+        function closeToastr(toastr) {
+            toastr.classList.remove('show');
+            setTimeout(() => {
+                if (toastr.parentElement) {
+                    toastr.parentElement.removeChild(toastr);
+                }
+            }, 300);
+        }
+        
+                 // Cart state management
+         let isInCart = false;
+         
+         // Add to cart function
+         function addToCart() {
+             if (!isInCart) {
+                 // Add to cart
+                 isInCart = true;
+                 updateCartButton();
+                 showToastr('success', 'Success!', 'Course successfully added to cart!');
+             } else {
+                 // Remove from cart
+                 isInCart = false;
+                 updateCartButton();
+                 showToastr('success', 'Removed!', 'Course removed from cart!');
+             }
+         }
+         
+         // Update cart button appearance
+         function updateCartButton() {
+             const cartBtn = document.querySelector('.floating-cart-btn');
+             const cartIcon = cartBtn.querySelector('.cart-icon');
+             const cartText = cartBtn.querySelector('span:last-child');
+             
+             if (isInCart) {
+                 // Show remove state
+                 cartIcon.className = 'fas fa-times cart-icon';
+                 cartText.textContent = 'Remove';
+                 cartBtn.style.background = 'linear-gradient(135deg, #dc3545, #c82333)';
+                 cartBtn.style.boxShadow = '0 8px 25px rgba(220, 53, 69, 0.3)';
+                 cartBtn.classList.add('remove-state');
+             } else {
+                 // Show add state
+                 cartIcon.className = 'fas fa-shopping-cart cart-icon';
+                 cartText.textContent = 'Enroll Now';
+                 cartBtn.style.background = 'linear-gradient(135deg, #339CB5, #2a7a8f)';
+                 cartBtn.style.boxShadow = '0 8px 25px rgba(51, 156, 181, 0.3)';
+                 cartBtn.classList.remove('remove-state');
+             }
+         }
+        
+        // Enroll course function
+        function enrollCourse() {
+            // Check if user is logged in
+            if (confirm('Would you like to enroll in this course?')) {
+                // Redirect to registration if not logged in, or to payment if logged in
+                window.location.href = 'register.html';
+            }
+        }
+
+        // Preview course function
+        function previewCourse() {
+            // Show preview modal or redirect to preview page
+            alert('Course preview feature coming soon!');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

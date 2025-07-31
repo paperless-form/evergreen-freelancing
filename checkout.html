@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - EverGreen Freelancing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Checkout Page Specific Styles -->
+    <style>
+        /* Hero Section */
+        .checkout-hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            padding: 120px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checkout-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .checkout-hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            text-align: center;
+        }
+
+        .checkout-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .checkout-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Checkout Content */
+        .checkout-content {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Checkout Form */
+        .checkout-form-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #339CB5;
+            box-shadow: 0 0 0 3px rgba(51, 156, 181, 0.1);
+            outline: none;
+        }
+
+        /* Credit Card Section */
+        .credit-card-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 2px solid #e9ecef;
+        }
+
+        .credit-card-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        /* Order Summary */
+        .order-summary-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: #339CB5;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            color: #dc3545;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .price-breakdown {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-row.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+            border-top: 1px solid #e9ecef;
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, #339CB5, #2a7a8f);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .checkout-btn:hover {
+            background: linear-gradient(135deg, #2a7a8f, #1f5f6f);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(51, 156, 181, 0.3);
+        }
+
+        .checkout-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            display: none;
+        }
+
+        /* Enhanced Active Navbar */
+        .navbar-nav .nav-link.active {
+            color: #339CB5 !important;
+            font-weight: 700;
+            position: relative;
+            background: linear-gradient(135deg, rgba(51, 156, 181, 0.1), rgba(42, 122, 143, 0.1));
+            border-radius: 8px;
+            padding: 8px 16px !important;
+            margin: 0 4px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link.active::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 3px;
+            background: linear-gradient(135deg, #339CB5, #2a7a8f);
+            border-radius: 2px;
+        }
+
+        .navbar-nav .nav-link.active:hover {
+            background: linear-gradient(135deg, rgba(51, 156, 181, 0.15), rgba(42, 122, 143, 0.15));
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(51, 156, 181, 0.2);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .checkout-title {
+                font-size: 2.5rem;
+            }
+
+            .checkout-form-section,
+            .order-summary-section {
+                padding: 2rem;
+            }
+
+            .order-summary-section {
+                position: static;
+                margin-top: 2rem;
+            }
+
+            .navbar-nav .nav-link.active {
+                margin: 4px 0;
+                text-align: center;
+            }
+
+            .navbar-nav .nav-link.active::before {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.jpg" alt="logo" class="logo">
+                <span>EverGreen Freelancing</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-times close-icon"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">FAQ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="navbar-nav">
+                    <a href="login.html" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="register.html" class="btn btn-primary btn-register">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Hero -->
+    <section class="checkout-hero">
+        <div class="container">
+            <div class="checkout-hero-content">
+                <h1 class="checkout-title">Complete Your Purchase</h1>
+                <p class="checkout-subtitle">Secure checkout process. Your information is protected with bank-level security.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section class="checkout-content">
+        <div class="container">
+            <div class="checkout-container">
+                <div class="row">
+                    <!-- Checkout Form -->
+                    <div class="col-lg-8">
+                        <div class="checkout-form-section">
+                            <h2 class="form-title">Payment Information</h2>
+                            <form id="checkoutForm">
+                                <div class="success-message" id="successMessage">
+                                    <i class="fas fa-check-circle"></i> Thank you! Your order has been placed successfully. You'll receive a confirmation email shortly.
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email for confirmation">
+                                </div>
+
+                                <!-- Credit Card Fields -->
+                                <div class="credit-card-section">
+                                    <h3 class="form-label">Credit/Debit Card Details</h3>
+                                    
+                                    <div class="form-group">
+                                        <label for="cardNumber" class="form-label">Card Number *</label>
+                                        <input type="text" class="form-control" id="cardNumber" name="cardNumber" required placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="expiryDate" class="form-label">Expiry Date *</label>
+                                                <input type="text" class="form-control" id="expiryDate" name="expiryDate" required placeholder="MM/YY" maxlength="5">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cvv" class="form-label">CVV *</label>
+                                                <input type="text" class="form-control" id="cvv" name="cvv" required placeholder="123" maxlength="4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cardName" class="form-label">Name on Card *</label>
+                                        <input type="text" class="form-control" id="cardName" name="cardName" required placeholder="Enter name as it appears on card">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="col-lg-4">
+                        <div class="order-summary-section">
+                            <h3 class="summary-title">Order Summary</h3>
+                            
+                            <!-- Cart Items -->
+                            <div id="cartItems">
+                                <div class="cart-item">
+                                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Web Development Course" class="cart-item-image">
+                                    <div class="cart-item-details">
+                                        <div class="cart-item-title">Complete Web Development</div>
+                                        <div class="cart-item-price">$99.00</div>
+                                    </div>
+                                    <div class="cart-item-remove" onclick="removeItem(this)">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="cart-item">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Digital Marketing Course" class="cart-item-image">
+                                    <div class="cart-item-details">
+                                        <div class="cart-item-title">Digital Marketing Mastery</div>
+                                        <div class="cart-item-price">$79.00</div>
+                                    </div>
+                                    <div class="cart-item-remove" onclick="removeItem(this)">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Breakdown -->
+                            <div class="price-breakdown">
+                                <div class="price-row">
+                                    <span>Subtotal:</span>
+                                    <span>$178.00</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Tax (10%):</span>
+                                    <span>$17.80</span>
+                                </div>
+                                <div class="price-row">
+                                    <span>Discount:</span>
+                                    <span>-$20.00</span>
+                                </div>
+                                <div class="price-row total">
+                                    <span>Total:</span>
+                                    <span>$175.80</span>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="checkout-btn" onclick="processCheckout()">
+                                <i class="fas fa-lock me-2"></i>
+                                Complete Purchase
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo-with-text.jpg" alt="logo" class="footer-logo">
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="footer-brand">
+                        <p>Transform your future with expert-led courses designed for the modern learner.</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-3 mb-4">
+                    <h5>Contact Info</h5>
+                    <div class="contact-info">
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> <a href="mailto:info@evergfreelance.com">Info@evergfreelance.com</a></li>
+                            <li><i class="fas fa-phone"></i> <a href="tel:+639602358974">+63 960 235 8974</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <a href="https://maps.app.goo.gl/1234567890">123 Learning St, Education City</a></li>
+                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/639602358974">+63 960 235 8974</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <hr>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; <script>document.write(new Date().getFullYear());</script> EverGreen Freelancing. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Remove Cart Item
+        function removeItem(element) {
+            const cartItem = element.closest('.cart-item');
+            cartItem.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                cartItem.remove();
+                updateOrderSummary();
+            }, 300);
+        }
+
+        // Update Order Summary
+        function updateOrderSummary() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            let subtotal = 0;
+            
+            cartItems.forEach(item => {
+                const price = parseFloat(item.querySelector('.cart-item-price').textContent.replace('$', ''));
+                subtotal += price;
+            });
+            
+            const tax = subtotal * 0.1;
+            const discount = 20;
+            const total = subtotal + tax - discount;
+            
+            // Update price breakdown
+            document.querySelector('.price-row:nth-child(1) span:last-child').textContent = `$${subtotal.toFixed(2)}`;
+            document.querySelector('.price-row:nth-child(2) span:last-child').textContent = `$${tax.toFixed(2)}`;
+            document.querySelector('.price-row:nth-child(3) span:last-child').textContent = `-$${discount.toFixed(2)}`;
+            document.querySelector('.price-row.total span:last-child').textContent = `$${total.toFixed(2)}`;
+        }
+
+        // Process Checkout
+        function processCheckout() {
+            const form = document.getElementById('checkoutForm');
+            
+            if (form.checkValidity()) {
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.style.display = 'block';
+                
+                // Disable checkout button
+                const checkoutBtn = document.querySelector('.checkout-btn');
+                checkoutBtn.disabled = true;
+                checkoutBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+                
+                // Simulate processing delay
+                setTimeout(() => {
+                    // Reset form
+                    form.reset();
+                    
+                    // Clear cart
+                    document.getElementById('cartItems').innerHTML = '';
+                    
+                    // Update order summary
+                    updateOrderSummary();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                        checkoutBtn.disabled = false;
+                        checkoutBtn.innerHTML = '<i class="fas fa-lock me-2"></i>Complete Purchase';
+                    }, 5000);
+                }, 2000);
+                
+                // In a real application, you would send the form data to your server here
+                console.log('Checkout processed successfully');
+            } else {
+                form.reportValidity();
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
